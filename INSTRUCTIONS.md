@@ -6,13 +6,13 @@ We'll be able to see movies that exist in our DB. We'll also be able to see deta
 
 
 
-## Database Setup
+## Database Setup - complete
 
 1. Create a database named `saga_movies_weekend`
 2. Run the queries from `database.sql` on the `saga_movies_weekend` database.
 3. A movie could have many genres. You will need to create the junction table between the `movies` and `genres` tables! It will be helpful to have some data for that junction table added.
 
-## Install Dependencies
+## Install Dependencies - complete 
 
 1. `npm install`
 2. `npm run server`
