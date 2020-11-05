@@ -30,6 +30,7 @@ function* fetchMovies(){
 
 }
 
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -42,7 +43,6 @@ const movies = (state = [], action) => {
             return state;
     }
 }
-
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
@@ -52,7 +52,6 @@ const genres = (state = [], action) => {
             return state;
     }
 }
-
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
@@ -62,10 +61,8 @@ const storeInstance = createStore(
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
-
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
-
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
     document.getElementById('root'));
 registerServiceWorker();
