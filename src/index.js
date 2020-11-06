@@ -34,7 +34,7 @@ function * fetchDetails() {
     }
 }
 
-function * fetchMovies() {
+function* fetchMovies() {
     try {
         //server req
         let response = yield axios.get('/api/movie')
@@ -51,6 +51,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 const details = (state = [], action) => {
     switch (action.type) {
+        case 'SEND_ID':
+            console.log(action.payload)
+            id = action.payload
+            return state;           
         case 'SET_DETAILS':
             return action.payload
         default:
