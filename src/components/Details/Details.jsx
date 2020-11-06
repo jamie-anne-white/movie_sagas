@@ -1,41 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Details.css';
+import {Card, Button} from '@material-ui/core/';
+
+
 
 class Details extends Component {
-
     state = {}
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_DETAILS' })
-        this.props.dispatch({ type: 'FETCH_DETAILS' })
     }
 
     render() {
+
         return (
-            <>
-                <p>details page</p>
-
-
-        <p>{this.props.reduxState.details.name}</p>
-                {this.props.reduxState.details.map((movie) => {
-
-                    return (
-                        <div className='details' key={movie.id}>
-               
-                            <img src={movie.poster} alt={movie.title} />
-                            <h3>{movie.title}</h3>
-                            <p>Categories: {movie.name}</p>
-                            <p>{movie.description}</p>
+            <div className='container'>
+                    {this.props.reduxState.details[0] && 
+                        <Card className='details'>
+                        <h2>{this.props.reduxState.details[0].title}</h2>
+                        <img src={this.props.reduxState.details[0].poster} alt={this.props.reduxState.details[0].title} />
+                            
+                        <div className='categories'>
+                        <h4 >Categories:</h4>
+                            <ul>
+                                {this.props.reduxState.details.map((item) => {
+                                    return (
+                                        <li>{item.name}</li>
+                                    )
+                                })}
+                            </ul>
 
                         </div>
-                    )
-                })}
+                        <p className='catagories'>{this.props.reduxState.details[0].description}</p>
 
-                <button onClick={() => this.props.history.push('/')}>Back</button>
-            </>
+                                <Button variant='contained' onClick={() => this.props.history.push('/')}>Back</Button>
+                                </Card>}
+                        </div>
+
         )
+
     }
-};
+}
+
 const mapPropsToState = (reduxState) => {
     return {
         reduxState

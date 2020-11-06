@@ -1,0 +1,17 @@
+.details {
+    width: 50%;
+    margin-top: 1em;
+    padding: 1em;
+    display: block;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.categories {
+    text-align: left;
+}
+
