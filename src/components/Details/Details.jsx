@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class Details extends Component {
 
     state = {}
-
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_DETAILS' })
@@ -15,30 +13,25 @@ class Details extends Component {
     render() {
         return (
             <>
-
-
-
-
-
                 <p>details page</p>
 
-                <p>{this.props.reduxState.details.name}</p>
-                    {this.props.reduxState.details.map((movie) => {
+
+        <p>{this.props.reduxState.details.name}</p>
+                {this.props.reduxState.details.map((movie) => {
 
                     return (
-                        <>
                         <div className='details' key={movie.id}>
+               
                             <img src={movie.poster} alt={movie.title} />
                             <h3>{movie.title}</h3>
                             <p>Categories: {movie.name}</p>
                             <p>{movie.description}</p>
 
                         </div>
-                        <button onClick={() => this.props.history.push('/')}>Back</button>
-                        </>
                     )
                 })}
 
+                <button onClick={() => this.props.history.push('/')}>Back</button>
             </>
         )
     }

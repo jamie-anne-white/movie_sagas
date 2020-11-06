@@ -5,14 +5,22 @@ import { connect } from 'react-redux';
 class AddMovies extends Component {
 
     state = {
-        genre: 'Adventure',
+        genre_id: 1,
         title: '',
         poster: '',
         description: ''
     }
 
-    componentDidMount() {
-        this.props.dispatch({ type: 'GET_DETAILS' })
+    addMovie = (event) => {
+        event.preventDefault();
+        console.log(this.state)
+        this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
+        this.setState({
+            genre_id: 1,
+            title: '',
+            poster: '',
+            description: ''
+        })
     }
 
 
@@ -29,25 +37,28 @@ class AddMovies extends Component {
         return (
             <>
                 <p>Add a Movie</p>
+                <form onSubmit={this.addMovie}>
                 <input type='text' placeholder='movie title' onChange={(event) => this.handleChange(event, 'title')}/>
                 <input type='text' placeholder='poster url' onChange={(event) => this.handleChange(event, 'poster')}/>
                 <textarea placeholder='description' onChange={(event) => this.handleChange(event, 'description')}></textarea>
                 <label>Choose a Genre:</label>
                 <select name="genre" id="genre" onChange={(event) => this.handleChange(event, 'genre')}>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animated">Animated</option>
-                    <option value="Biographical">Biographical</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Disaster">Disaster</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Epic">Epic</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Romantic">Romantic</option>
-                    <option value="Science Fiction">Science Fiction</option>
-                    <option value="Space-Opera">Space-Opera</option>
-                    <option value="Superhero">Superhero</option>
+                <option value="1">Adventure</option>
+                    <option value="2">Animated</option>
+                    <option value="3">Biographical</option>
+                    <option value="4">Comedy</option>
+                    <option value="5">Disaster</option>
+                    <option value="6">Drama</option>
+                    <option value="7">Epic</option>
+                    <option value="8">Fantasy</option>
+                    <option value="9">Musical</option>
+                    <option value="10">Romantic</option>
+                    <option value="11">Science Fiction</option>
+                    <option value="12">Space-Opera</option>
+                    <option value="13">Superhero</option>
                 </select>
+                <button type='submit'>Submit Movie</button>
+                </form>
 
 
                 <button onClick={() => this.props.history.push('/')}>Cancel</button>
