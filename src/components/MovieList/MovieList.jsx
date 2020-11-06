@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Card from '@material-ui/core/Card';
+import './MovieList.css'
 
 
 class MovieList extends Component {
@@ -20,11 +22,15 @@ class MovieList extends Component {
         return (
             <div className='container'>
                 {this.props.reduxState.movies.map((movie) => (
-                    <div key={movie.id} className='item'>
-                        <img src={movie.poster} alt={movie.title} onClick={() => this.sendId(movie.id)} />
-                        <h3>{movie.title}</h3>
+                   
+                    <Card key={movie.id} className='item'>
+                    <div className='card-content'>
+                        <img className ='poster' src={movie.poster} alt={movie.title} onClick={() => this.sendId(movie.id)} />
+                        <div className='title-div'>
+                        <h3>{movie.title}</h3> </div>
                         <p>{movie.description}</p>
                     </div>
+                    </Card>
                 ))}
             </div>
         )
