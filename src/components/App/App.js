@@ -5,6 +5,8 @@ import MovieList from '../MovieList/MovieList.jsx'
 import Details from '../Details/Details.jsx'
 import AddMovies from '../AddMovies/AddMovies.jsx';
 import AppBar from '@material-ui/core/AppBar';
+import Edit from '../Edit/Edit.jsx';
+
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -24,6 +26,8 @@ class App extends Component {
         <Route exact path="/" component={MovieList} />
         <Route exact path="/details" component={Details} />
         <Route path='/add' component={AddMovies} />
+        <Route path='/edit' component={Edit}/>
+
       </Router>
     );
   }
