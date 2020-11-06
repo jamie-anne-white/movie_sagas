@@ -19,12 +19,22 @@ function * rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
     yield takeEvery('GET_DETAILS', fetchDetails)
     yield takeEvery('ADD_MOVIE', postMovie)
+    yield takeEvery('SUBMIT_EDITED_MOVIE', postEdit)
+
 
 
 
 }
 
 //saga generator functions
+
+function* postEdit(action) {
+    try {
+        yield axios.put('/api/movie/', action.payload)
+    } catch (error) {
+        console.log('error in postEdit', error)
+    }
+}
 
 function* postMovie(action) {
     try {

@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//send updated movie
+router.put('/', (req, res) => {
+  console.log(req.body)
+  const queryText = `UPDATE "movies"
+  SET "title" = $1, "description" = $2
+  WHERE "id" = $3;`;
+  pool.query(queryText, [req.body.title, req.body.description, req.body.id] )
+  .then( (result) => {
+    res.sendStatus(200)
+  }) .catch( (error) => {
+    console.log('error in put', error);
+    res.sendStatus(500);
+  })
+})
+
 //get details for one movie
 router.get('/:id', (req, res) => {
   console.log(req.params.id)
@@ -35,6 +50,7 @@ router.get('/', (req, res) => {
       });
 });
 
+//submitting new movie
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
