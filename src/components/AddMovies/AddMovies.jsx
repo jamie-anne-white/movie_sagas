@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { InputLabel, MenuItem, Select, TextField, FormControl, FormHelperText, Button } from '@material-ui/core';
+import './AddMovies.css';
 
 
 class AddMovies extends Component {
@@ -14,7 +16,7 @@ class AddMovies extends Component {
     addMovie = (event) => {
         event.preventDefault();
         console.log(this.state)
-        this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
+        this.props.dispatch({ type: 'ADD_MOVIE', payload: this.state })
         this.setState({
             genre_id: 1,
             title: '',
@@ -25,10 +27,10 @@ class AddMovies extends Component {
 
 
     handleChange = (event, propertyName) => {
-            this.setState({
-                ...this.state,
-                [propertyName]: event.target.value
-            })
+        this.setState({
+            ...this.state,
+            [propertyName]: event.target.value
+        })
     }
 
 
@@ -36,32 +38,47 @@ class AddMovies extends Component {
         console.log(this.state)
         return (
             <>
+            <div className='addMovie'>
                 <p>Add a Movie</p>
-                <form onSubmit={this.addMovie}>
-                <input type='text' placeholder='movie title' onChange={(event) => this.handleChange(event, 'title')}/>
-                <input type='text' placeholder='poster url' onChange={(event) => this.handleChange(event, 'poster')}/>
-                <textarea placeholder='description' onChange={(event) => this.handleChange(event, 'description')}></textarea>
-                <label>Choose a Genre:</label>
-                <select name="genre" id="genre" onChange={(event) => this.handleChange(event, 'genre')}>
-                <option value="1">Adventure</option>
-                    <option value="2">Animated</option>
-                    <option value="3">Biographical</option>
-                    <option value="4">Comedy</option>
-                    <option value="5">Disaster</option>
-                    <option value="6">Drama</option>
-                    <option value="7">Epic</option>
-                    <option value="8">Fantasy</option>
-                    <option value="9">Musical</option>
-                    <option value="10">Romantic</option>
-                    <option value="11">Science Fiction</option>
-                    <option value="12">Space-Opera</option>
-                    <option value="13">Superhero</option>
-                </select>
-                <button type='submit'>Submit Movie</button>
-                </form>
-
-
-                <button onClick={() => this.props.history.push('/')}>Cancel</button>
+                <div >
+                    <form onSubmit={this.addMovie}>
+                        <div className='form-div'>
+                            <TextField variant="outlined" label='Movie Title' required onChange={(event) => this.handleChange(event, 'title')} />
+                            <TextField variant="outlined" label='Poster Url' required onChange={(event) => this.handleChange(event, 'poster')} />
+                        </div>
+                        <div className='form-div'>
+                            <TextField variant="outlined" label='Description' required multiline style={{ width: 400 }}
+                                rowsMax={6} onChange={(event) => this.handleChange(event, 'description')} />
+                        </div>
+                        <div className='form-div'>
+                        <FormControl required>
+                            <InputLabel id='genre-select'>Genre</InputLabel>
+                            <Select required value={this.state.genre_id} labelid='genre-select' id="genre" style={{ width: 200 }}
+                                placeholder='Genre' onChange={(event) => this.handleChange(event, 'genre_id')} >
+                                <MenuItem value={1}>Adventure</MenuItem>
+                                <MenuItem value={2}>Animated</MenuItem>
+                                <MenuItem value={3}>Biographical</MenuItem>
+                                <MenuItem value={4}>Comedy</MenuItem>
+                                <MenuItem value={5}>Disaster</MenuItem>
+                                <MenuItem value={6}>Drama</MenuItem>
+                                <MenuItem value={7}>Epic</MenuItem>
+                                <MenuItem value={8}>Fantasy</MenuItem>
+                                <MenuItem value={9}>Musical</MenuItem>
+                                <MenuItem value={10}>Romantic</MenuItem>
+                                <MenuItem value={11}>Science Fiction</MenuItem>
+                                <MenuItem value={12}>Space-Opera</MenuItem>
+                                <MenuItem value={13}>Superhero</MenuItem>
+                            </Select>
+                            <FormHelperText>Required</FormHelperText>
+                        </FormControl>
+                        <div className='form-div'>
+                        <Button type='submit' variant="contained" color="primary">Save</Button>
+                        </div>
+                        </div>
+                    </form>
+                    <Button variant="contained" onClick={() => this.props.history.push('/')}>Cancel</Button>
+                </div>
+            </div>
             </>
         )
     }
