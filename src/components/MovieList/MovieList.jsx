@@ -8,9 +8,9 @@ class MovieList extends Component {
         this.props.dispatch({ type: 'FETCH_MOVIES' })
     }
 
-    showDetails = (id) => {
+    sendId = (id) => {
         console.log(id)
-        this.props.dispatch({type: 'GET_DETAILS', payload: id})
+        this.props.dispatch({type: 'SEND_ID', payload: id})
         this.props.history.push('/details')
 
 }
@@ -21,7 +21,7 @@ class MovieList extends Component {
             <div className='container'>
                 {this.props.reduxState.movies.map((movie) => (
                     <div key={movie.id} className='item'>
-                        <img src={movie.poster} alt={movie.title} onClick={() => this.showDetails(movie.id)} />
+                        <img src={movie.poster} alt={movie.title} onClick={() => this.sendId(movie.id)} />
                         <h3>{movie.title}</h3>
                         <p>{movie.description}</p>
                     </div>
